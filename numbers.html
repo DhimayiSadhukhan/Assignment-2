@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Numbers</title>
+  <style>
+    img {
+      width: 100px;
+      height: 130px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="show"></div>
+  <h3>Enter a number</h3>
+  <input id="num" onkeypress="modify()"></input>
+  <script>
+    var inp, index, p;
+
+    function modify() {
+      inp = parseInt(document.getElementById("num").value);
+      p = document.getElementById("show");
+      index = p.childNodes.length;
+      if (inp > index) {
+        add(index, p);
+      }
+      if (inp < index) {
+        remove(index, p);
+      }
+      if (inp !== index) {
+        setTimeout(modify, 1000);
+      }
+    }
+
+    function add(index, p) {
+      var c = document.createElement("IMG");
+      var n = (++index).toString(10);
+      c.src = "images/image" + n + ".jpg";
+      p.appendChild(c);
+    }
+
+    function remove(index, p) {
+      p.removeChild(p.childNodes[index - 1]);
+      index--;
+    }
+  </script>
+</body>
+
+</html>
